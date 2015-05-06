@@ -1,0 +1,20 @@
+<username>/SimpleGoApp:
+  # This Basic Distelli Manifest assumes the following
+  # has been provisioned on the destination deploy server:
+  #
+  # OS: Ubuntu
+  # Installed Packages:
+  #   golang >= go1.1   [sudo apt-get install golang]
+  #
+  
+  Env:
+    - PORT: "8002"
+  
+  PostInstall:
+   - go build -o bin/server src/server.go
+    
+  Exec:
+    - exec ./bin/server $PORT
+    
+  PkgInclude:
+    - src/server.go
